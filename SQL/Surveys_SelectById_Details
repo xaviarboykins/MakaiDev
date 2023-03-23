@@ -1,0 +1,48 @@
+-- =============================================
+-- Author: Xaviar Boykins
+-- Create date: 3/4/2023
+-- Description:	Select Complete survey details by Id
+-- Code Reviewer: Jacqueline Taylor
+-- =============================================
+
+ALTER proc [dbo].[Surveys_SelectById_Details]
+						@Id int
+
+as
+	/*------------Test Code----------
+				Declare @Id int = 32;
+
+				Execute dbo.Surveys_SelectById_Details
+							@Id
+
+					From dbo.Surveys
+					Where Id = @Id
+
+	*/
+
+Begin
+
+		Select s.Id
+			   , s.Name
+			   , Questions = ( Select sq.Id
+							   , sq.QuestionTypeId as Type
+							   , sq.Question
+							   , AnswerOptions = ( Select a.Id
+														  , a.QuestionId
+														  , a.Text
+														  , a.AdditionalInfo
+														  , a.Value
+													From dbo.SurveyQuestionAnswerOptions as a
+													inner join dbo.SurveyQuestions as q on q.Id = a.QuestionId
+
+													Where sq.Id = a.QuestionId
+													For json auto
+												  )
+							  From dbo.SurveyQuestions as sq
+							  Where sq.SurveyId = @Id
+							  For json auto
+						    )	
+		From dbo.Surveys as s	
+		Where s.Id = @Id
+
+End
