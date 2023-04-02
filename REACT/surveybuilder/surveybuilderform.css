@@ -1,0 +1,64 @@
+.survey-builder-nav-linkx {
+     position: relative;
+}
+
+.survey-builder-nav-linkx::after {
+     opacity: 0;
+     transition: all 0.2s;
+}
+
+.survey-builder-nav-linkx:hover::after {
+     content: "";
+     opacity: 1;
+     height: 4px;
+     width: 100%;
+     background-color: #2c7be5;
+     position: absolute;
+     bottom: 0;
+     left: 0;
+}
+
+.survey-builder-has-error {
+     width: 100%;
+     margin-top: 0.25rem;
+     font-size: 80%;
+     color: crimson;
+}
+
+.survey-builder-scrollit {
+     overflow: auto;
+     overflow-x: hidden;
+     height: 60vh;
+     position: relative;
+}
+
+.survey-builder-survey {
+     height: 20vh;
+}
+.survey-builder-card {
+     height: 60vh;
+}
+
+.survey-builder-fixed-header {
+     top: 0;
+     position: sticky;
+     background: white;
+     color: black;
+}
+
+::-webkit-scrollbar {
+     width: 1em;
+}
+
+::-webkit-scrollbar-track {
+     background: hsl(0, 0%, 90%);
+     border-radius: 100vw;
+     margin-block: 1.5em;
+}
+::-webkit-scrollbar-thumb {
+     background: hsl(0, 5%, 70%);
+     border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb:hover {
+     background: hsl(0, 0%, 10%);
+}
